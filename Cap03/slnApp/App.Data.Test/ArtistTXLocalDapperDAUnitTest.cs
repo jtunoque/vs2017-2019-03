@@ -70,7 +70,7 @@ namespace App.Data.Test
             artist.ArtistId = 278;
             var registrosAfectados = da.Update(artist);
 
-            Assert.IsTrue(registrosAfectados > 0, "El nombre del artista ya existe");
+            Assert.IsTrue(registrosAfectados, "El nombre del artista ya existe");
 
         }
     }

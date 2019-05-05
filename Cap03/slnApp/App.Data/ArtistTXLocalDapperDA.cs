@@ -108,33 +108,148 @@ namespace App.Data
             return result;
         }
 
-        public int Update(Artist entity)
+        public bool Update(Artist entity)
         {
-            var result = 0;
+            var result = false;
             using (IDbConnection cn = new SqlConnection(this.ConnectionString))
             {
                 result = cn.Execute("usp_UpdateArtist",
                     new { pName = entity.Name, pId = entity.ArtistId },
                     commandType: CommandType.StoredProcedure
-                    );
+                    )>0;
             }
 
             return result;
         }
 
-        public int Delete(int id)
+        public bool Delete(int id)
+        {
+            bool result = false;
+            using (IDbConnection cn = new SqlConnection(this.ConnectionString))
+            {
+
+                result = cn.Execute("usp_DeleteArtist",
+                     new { pId = id },
+                     commandType: CommandType.StoredProcedure
+                     )>0;
+
+            }
+
+            return result;
+        }
+
+        public int InsertTX(Artist entity)
         {
             var result = 0;
             using (IDbConnection cn = new SqlConnection(this.ConnectionString))
             {
-                result = cn.Execute("usp_DeleteArtist",
-                     new { pId = id },
-                     commandType: CommandType.StoredProcedure
-                     );
+                //Abriendo la conexiòn a la base de datos
+                //antes de iniciar la transacciòn
+                cn.Open();
 
+                //Inciamos la transacciones
+                var tx = cn.BeginTransaction();
+
+                try
+                {
+                    result = cn.ExecuteScalar<int>("usp_InsertArtist",
+                   new { pName = entity.Name },
+                   commandType: CommandType.StoredProcedure,
+                   transaction:tx
+                   );
+
+                    //Confirmando la transacciòn
+                    tx.Commit();
+                    
+                }
+                catch(Exception ex)
+                {
+                    result = 0;
+                    //Deshacer las operaciones realizadas en la
+                    //transacciòn
+                    tx.Rollback();
+                }
+               
             }
 
             return result;
         }
+        public bool UpdateTX(Artist entity)
+        {
+            var result = false;
+            using (IDbConnection cn = new SqlConnection(this.ConnectionString))
+            {
+
+                //Abriendo la conexiòn a la base de datos
+                //antes de iniciar la transacciòn
+                cn.Open();
+
+                //Inciamos la transacciones
+                var tx = cn.BeginTransaction();
+
+                try
+                {
+                    result = cn.Execute("usp_UpdateArtist",
+                     new { pName = entity.Name, pId = entity.ArtistId },
+                     commandType: CommandType.StoredProcedure
+                     ) > 0;
+
+                    //Confirmando la transacciòn
+                    tx.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    //Deshacer las operaciones realizadas en la
+                    //transacciòn
+                    tx.Rollback();
+                }
+
+
+               
+            }
+
+            return result;
+        }
+
+        public bool DeleteTX(int id)
+        {
+            bool result = false;
+            using (IDbConnection cn = new SqlConnection(this.ConnectionString))
+            {
+
+                //Abriendo la conexiòn a la base de datos
+                //antes de iniciar la transacciòn
+                cn.Open();
+
+                //Inciamos la transacciones
+                var tx = cn.BeginTransaction();
+
+                try
+                {
+                    result = cn.Execute("usp_DeleteArtist",
+                    new { pId = id },
+                    commandType: CommandType.StoredProcedure
+                    ) > 0;
+
+                    //Confirmando la transacciòn
+                    tx.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    //Deshacer las operaciones realizadas en la
+                    //transacciòn
+                    tx.Rollback();
+                }
+             
+            }
+
+            return result;
+        }
+
+
     }
 }
