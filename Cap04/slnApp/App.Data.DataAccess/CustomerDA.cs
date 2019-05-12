@@ -7,34 +7,35 @@ using System.Threading.Tasks;
 
 namespace App.Data.DataAccess
 {
-    public class ArtistDA
+    public class CustomerDA
     {
-        public List<Artist> GetAll(string nombre)
+        public List<Customer> GetAll(string nombres)
         {
-            var result = new List<Artist>();
+            var result = new List<Customer>();
             using (var db = new DBModel())
             {
-                result = db.Artist
-                    .Where(item=>item.Name.Contains(nombre))
-                    .OrderBy(item=>item.Name)
+                result = db.Customer
+                    .Where(item=>String.Concat(item.FirstName, " ",
+                                        item.LastName).Contains(nombres))
+                    .OrderBy(item=>item.LastName).ThenBy(item=>item.FirstName)
                     .ToList();
             }
 
             return result;
         }
 
-        public Artist Get(int id)
+        public Customer Get(int id)
         {
-            var result = new Artist();
+            var result = new Customer();
             using (var db = new DBModel())
             {
-                result = db.Artist.Find(id);
+                result = db.Customer.Find(id);
             }
 
             return result;
         }
 
-        public int Insert(Artist entity)
+        public int Insert(Customer entity)
         {
             var result = 0;
 
@@ -42,25 +43,25 @@ namespace App.Data.DataAccess
             {
                 //Agrega la entidad al contexto
                 //del entity framework
-                db.Artist.Add(entity);
+                db.Customer.Add(entity);
 
                 //Se confirma la transacciòn
                 db.SaveChanges();
 
-                result = entity.ArtistId;
+                result = entity.CustomerId;
             }
 
             return result;
         }
 
-        public bool Update(Artist entity)
+        public bool Update(Customer entity)
         {
             var result = false;
 
             using (var db = new DBModel())
             {
                 //Atachamos la entidad al contexto
-                db.Artist.Attach(entity);
+                db.Customer.Attach(entity);
                 //Cambiando el estado de la entidad
                 db.Entry(entity).State =
                         System.Data.Entity.EntityState.Modified;
@@ -80,11 +81,11 @@ namespace App.Data.DataAccess
 
             using (var db = new DBModel())
             {
-                var entity = new Artist();
-                entity.ArtistId = id;
+                var entity = new Customer();
+                entity.CustomerId = id;
 
-                db.Artist.Attach(entity);
-                db.Artist.Remove(entity);
+                db.Customer.Attach(entity);
+                db.Customer.Remove(entity);
 
                 //Se confirma la transacciòn
                 db.SaveChanges();
