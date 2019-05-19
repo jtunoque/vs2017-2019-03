@@ -12,3 +12,5 @@ C:\VS2017JTG\github\vs2017-2019-03\Cap04\slnApp\App.Data.DataAccess\obj\Debug\Ap
 C:\VS2017JTG\github\vs2017-2019-03\Cap04\slnApp\App.Data.DataAccess\obj\Debug\App.Data.DataAccess.csproj.CopyComplete
 C:\VS2017JTG\github\vs2017-2019-03\Cap04\slnApp\App.Data.DataAccess\obj\Debug\App.Data.DataAccess.dll
 C:\VS2017JTG\github\vs2017-2019-03\Cap04\slnApp\App.Data.DataAccess\obj\Debug\App.Data.DataAccess.pdb
+C:\VS2017JTG\github\vs2017-2019-03\Cap04\slnApp\App.Data.DataAccess\bin\Debug\App.Entities.Queries.dll
+C:\VS2017JTG\github\vs2017-2019-03\Cap04\slnApp\App.Data.DataAccess\bin\Debug\App.Entities.Queries.pdb

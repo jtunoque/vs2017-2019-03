@@ -1,6 +1,7 @@
 ﻿using App.Entities.Base;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,12 @@ namespace App.Data.DataAccess
             var result = new Artist();
             using (var db = new DBModel())
             {
-                result = db.Artist.Find(id);
+                //Con Lazy Loading
+               // result = db.Artist.Find(id);
+
+                //Con include (Edger Loading)
+                result = db.Artist.Include(item => item.Album)
+                        .Where(item => item.ArtistId == id).FirstOrDefault();
             }
 
             return result;
@@ -63,7 +69,7 @@ namespace App.Data.DataAccess
                 db.Artist.Attach(entity);
                 //Cambiando el estado de la entidad
                 db.Entry(entity).State =
-                        System.Data.Entity.EntityState.Modified;
+                        EntityState.Modified;
 
                 //Se confirma la transacciòn
                 db.SaveChanges();
