@@ -1,0 +1,11 @@
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\bin\Debug\App.Data.Repository.Interface.dll
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\bin\Debug\App.Data.Repository.Interface.pdb
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\bin\Debug\App.Entities.Base.dll
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\bin\Debug\App.Entities.Base.pdb
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\obj\Debug\App.Data.Repository.Interface.csprojAssemblyReference.cache
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\obj\Debug\App.Data.Repository.Interface.csproj.CoreCompileInputs.cache
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\obj\Debug\App.Data.Repository.Interface.csproj.CopyComplete
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\obj\Debug\App.Data.Repository.Interface.dll
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\obj\Debug\App.Data.Repository.Interface.pdb
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\bin\Debug\App.Entities.Queries.dll
+C:\VS2017JTG\github\vs2017-2019-03\Cap06\slnApp\App.Data.Repository.Interface\bin\Debug\App.Entities.Queries.pdb

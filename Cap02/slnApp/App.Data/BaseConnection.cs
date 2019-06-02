@@ -13,7 +13,9 @@ namespace App.Data
         {
             get
                {
-                string cnx = @"Data Source=MI607-ST\SQL2016PIVOT;Initial Catalog=dbChinook;User Id=chinook; Password=P@$$w0rd";
+                /*string cnx = @"Data Source=MI607-ST\SQL2016PIVOT;Initial Catalog=dbChinook;User Id=chinook; Password=P@$$w0rd";*/
+
+                string cnx = @"Data Source=MI607-ST\SQL2016PIVOT;Initial Catalog=dbChinook;Integrated Security=true;
 
                 return cnx;
             }
