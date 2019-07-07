@@ -23,8 +23,10 @@ namespace App.UI.WebForm.Pages.Mantenimientos.Track
 
         private void Buscar()
         {
+            string filterByName =  $"%{txtFiltroPorNombre.Text.Trim()}%";
+
             IAppUnitOfWork uw = new AppUnitOfWork();
-            var data = uw.TrackRepository.ReporteTracks("%");
+            var data = uw.TrackRepository.ReporteTracks(filterByName);
 
             //Asignando la información al control DataGrid
             grvListado.DataSource = data;

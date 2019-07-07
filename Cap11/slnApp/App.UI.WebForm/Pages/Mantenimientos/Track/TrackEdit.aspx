@@ -1,158 +1,99 @@
 ﻿<%@ Page Title="Administración de Tack" Language="C#"
     MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="TrackEdit.aspx.cs" Inherits="App.UI.WebForm.Pages.Mantenimientos.Track.TrackEdit" %>
-<asp:Content ID="Asp1" ContentPlaceHolderID="contentHead" runat="server">
 
+<asp:Content ID="Asp1" ContentPlaceHolderID="contentHead" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contentMain" runat="server">
 
-<form runat="server">
-     <asp:ValidationSummary
-        ID="validationSummary"
-        runat="server"
-        DisplayMode="BulletList"
-        >
-
-    </asp:ValidationSummary>
+    <form runat="server" class="form-horizontal">
+        <asp:HiddenField ID="hdfCodigo" runat="server" />
 
 
-    <table style="width:100%;">
-        <tr>
-            <td style="width: 151px">
-                <asp:Label ID="Label1" runat="server" Text="Nombre (*):"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Nombre:</label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Display="Dynamic"
+                            ErrorMessage="El campo es requerido" ControlToValidate="txtNombre">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Album:</label>
+                    <div class="col-sm-10">
+                        <asp:DropDownList ID="ddlAlbum" runat="server" CssClass="form-control">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Medio:</label>
+                    <div class="col-sm-10">
+                        <asp:DropDownList ID="ddlMedio" runat="server" CssClass="form-control">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Genero:</label>
+                    <div class="col-sm-10">
+                        <asp:DropDownList ID="ddlGenero" runat="server" CssClass="form-control">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Compositor:</label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtCompositor" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="El campo es requerido"
+                            ControlToValidate="txtCompositor" Display="Dynamic">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Duración:</label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtDuracion" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="El campo es requerido"
+                            ControlToValidate="txtDuracion" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Rango entre 1 y 10000000"
+                            ControlToValidate="txtDuracion" MinimumValue="1" MaximumValue="10000000" Type="Integer" Display="Dynamic">
+                        </asp:RangeValidator>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Peso:</label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtPeso" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
+                            ErrorMessage="El campo es requerido" Display="Dynamic"
+                            ControlToValidate="txtPeso">
+                        </asp:RequiredFieldValidator>
+                        <asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Rango entre 1Mb y 10MB"
+                            ControlToValidate="txtPeso" MinimumValue="1" MaximumValue="10000000" Type="Integer" Display="Dynamic">
+                        </asp:RangeValidator>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Precio:</label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="El campo es requerido"
+                            ControlToValidate="txtPrecio" Display="Dynamic">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-success" Text="Guardar" OnClick="btnGuardar_Click"
+                    CausesValidation="true" />
+            </div>
+            <!-- /.box-footer -->
+        </div>
+    </form>
 
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
-                    runat="server" ErrorMessage="El campo nombre es requerido"
-                    ControlToValidate="txtNombre"
-                    >*
-                </asp:RequiredFieldValidator>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 151px">
-                <asp:Label ID="Label2" runat="server" Text="Album:"></asp:Label>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlAlbum" runat="server">
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 151px">
-                <asp:Label ID="Label3" runat="server" Text="Medio:"></asp:Label>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlMedio" runat="server">
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 151px">
-                <asp:Label ID="Label4" runat="server" Text="Género:"></asp:Label>
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlGenero" runat="server">
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 151px">
-                <asp:Label ID="Label5" runat="server" Text="Compositor:"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox ID="txtCompositor" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                    ErrorMessage="El campo compositor es requerido"
-                    ControlToValidate="txtCompositor"
-                    ></asp:RequiredFieldValidator></td>
-        </tr>
-        <tr>
-            <td style="width: 151px">
-                <asp:Label ID="Label6" runat="server" Text="Duración"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox ID="txtDuracion" runat="server"></asp:TextBox>
 
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                    ErrorMessage="El campo duración es requerido" 
-                    ControlToValidate="txtDuracion"
-                    Display="Dynamic"
-                    ></asp:RequiredFieldValidator>
-
-                <asp:RangeValidator ID="RangeValidator1" 
-                    runat="server" 
-                    ErrorMessage="La duración debe estar entre 1 a 10 minutos"
-                    ControlToValidate="txtDuracion"
-                    MinimumValue="1" MaximumValue="10"
-                    Type="Integer"
-                     Display="Dynamic"
-                    ></asp:RangeValidator>
-
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 151px">
-                <asp:Label ID="Label7" runat="server" Text="Peso:"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox ID="txtPeso" runat="server"></asp:TextBox>
-                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
-                    ErrorMessage="El campo pero es requerido" 
-                    ControlToValidate="txtPeso"
-                    Display="Dynamic"
-                    ></asp:RequiredFieldValidator>
-
-                <asp:RangeValidator ID="RangeValidator2" 
-                    runat="server" 
-                    ErrorMessage="El peso debe estar entre 1MB y 10MB"
-                    ControlToValidate="txtPeso"
-                    MinimumValue="1" MaximumValue="10"
-                    Type="Integer"
-                     Display="Dynamic"
-                    ></asp:RangeValidator>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 151px">
-                <asp:Label ID="Label8" runat="server" Text="Precio:"></asp:Label>
-            </td>
-            <td>
-                <asp:TextBox ID="txtPrecio" runat="server"></asp:TextBox>
-                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
-                    ErrorMessage="El campo precio es requerido" 
-                    ControlToValidate="txtPrecio"
-                    Display="Dynamic"
-                    ></asp:RequiredFieldValidator>
-
-                <asp:RangeValidator ID="RangeValidator3" 
-                    runat="server" 
-                    ErrorMessage="El precio debe estar entre 1-100"
-                    ControlToValidate="txtPrecio"
-                    MinimumValue="1" MaximumValue="100"
-                    Type="Double"
-                     Display="Dynamic"
-                    ></asp:RangeValidator>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 151px">&nbsp;</td>
-            <td>
-                <asp:Button ID="btnGuardar" runat="server"
-                    Text="Guardar" OnClick="btnGuardar_Click" 
-                    CausesValidation="true"
-                    />
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 151px">&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-</form>
-    
-   
 
 </asp:Content>

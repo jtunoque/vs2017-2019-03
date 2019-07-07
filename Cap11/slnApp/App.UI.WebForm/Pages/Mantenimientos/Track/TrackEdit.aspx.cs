@@ -15,7 +15,40 @@ namespace App.UI.WebForm.Pages.Mantenimientos.Track
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            InitValues();
+
+            if (!Page.IsPostBack)
+            {
+                InitValues();
+                GetTrack();
+            }
+        }
+
+        private void GetTrack()
+        {
+            var codigo = Request.QueryString["cod"];
+            if(codigo!=null)
+            {
+                var trackId = Convert.ToInt32(codigo);
+
+                IAppUnitOfWork uw = new AppUnitOfWork();
+                var track = uw.TrackRepository.GetById(trackId);
+                if(track!=null)
+                {
+                    hdfCodigo.Value = track.TrackId.ToString(); 
+                    txtNombre.Text = track.Name;
+                    txtCompositor.Text = track.Composer;
+                    txtDuracion.Text = track.Milliseconds.ToString();
+                    txtPeso.Text = track.Bytes.ToString();
+                    txtPrecio.Text = track.UnitPrice.ToString();
+                    ddlAlbum.SelectedValue = track.AlbumId.ToString();
+                    ddlGenero.SelectedValue = track.GenreId.ToString();
+                    ddlMedio.SelectedValue = track.MediaTypeId.ToString();
+
+                }
+                uw.Dispose();
+            }
+
+
         }
 
         private void InitValues()
@@ -46,6 +79,13 @@ namespace App.UI.WebForm.Pages.Mantenimientos.Track
         private void Guardar()
         {
             var entity = new ETrack.Track();
+
+            if (!String.IsNullOrWhiteSpace(hdfCodigo.Value))
+            {
+                entity.TrackId = Convert.ToInt32(hdfCodigo.Value);
+            }
+
+            
             entity.Name = txtNombre.Text;
             entity.AlbumId = Convert.ToInt32(ddlAlbum.SelectedValue);
             entity.MediaTypeId = Convert.ToInt32(ddlMedio.SelectedValue);
@@ -56,7 +96,14 @@ namespace App.UI.WebForm.Pages.Mantenimientos.Track
             entity.UnitPrice = Convert.ToDecimal(txtPrecio.Text);
 
             IAppUnitOfWork uw = new AppUnitOfWork();
-            uw.TrackRepository.Add(entity);
+
+
+            if(entity.TrackId==0) //Cuando es nuevo
+                uw.TrackRepository.Add(entity);
+            else //Cuando es una edición
+                uw.TrackRepository.Update(entity);
+
+
             uw.Complete();
 
             uw.Dispose(); //Liberando conexión
