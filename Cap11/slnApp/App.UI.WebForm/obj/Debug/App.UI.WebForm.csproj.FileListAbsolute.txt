@@ -261,3 +261,5 @@ D:\VSDeveloper\src\vs2017-2019-03\Cap11\slnApp\App.UI.WebForm\obj\Debug\App.UI.W
 D:\VSDeveloper\src\vs2017-2019-03\Cap11\slnApp\App.UI.WebForm\obj\Debug\App.UI.WebForm.csproj.CopyComplete
 D:\VSDeveloper\src\vs2017-2019-03\Cap11\slnApp\App.UI.WebForm\obj\Debug\App.UI.WebForm.dll
 D:\VSDeveloper\src\vs2017-2019-03\Cap11\slnApp\App.UI.WebForm\obj\Debug\App.UI.WebForm.pdb
+D:\VSDeveloper\src\vs2017-2019-03\Cap11\slnApp\App.UI.WebForm\bin\log4net.dll
+D:\VSDeveloper\src\vs2017-2019-03\Cap11\slnApp\App.UI.WebForm\bin\log4net.xml
