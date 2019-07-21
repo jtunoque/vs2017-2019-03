@@ -46,18 +46,12 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="skin-blue">
+   
 
-    
     <form runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
 
-       <%-- <asp:ScriptManager runat="server">
-            <Scripts>
-                <asp:ScriptReference Path="~/Content/theme/plugins/jQuery/jQuery-2.1.3.min.js" />
-                <asp:ScriptReference Path="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" />
-                <asp:ScriptReference Path="~/Content/theme/bootstrap/js/bootstrap.min.js" />
-                <asp:ScriptReference Path="~/Content/theme/dist/js/app.min.js" />
-            </Scripts>
-        </asp:ScriptManager>--%>
+        </asp:ScriptManager>
 
         <div class="wrapper">
 
